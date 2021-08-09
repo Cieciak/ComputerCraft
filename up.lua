@@ -5,9 +5,14 @@ local width, height = up.getSize()
 local function wrapLine(monitor)
     local width, _ = monitor.getSize()
     local x, y = monitor.getCursorPos()
-    if x >= width then
+    if x > width then
         monitor.setCursorPos(1, y + 1)
     end
+end
+
+local function writeAtPos(monitor, x, y, text):
+    monitor.setCursorPos(x, y)
+    monitor.write(text)
 end
 
 up.clear()
@@ -20,3 +25,5 @@ for i = 1, 16 do
     j = j * 2
     wrapLine(up)
 end
+
+writeAtPos(up, math.floor(width/2), height, "MIX")
