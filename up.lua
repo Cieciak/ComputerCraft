@@ -16,6 +16,7 @@ up.setCursorPos(1,1)
 local j = 1
 for i = 1, 16 do
     up.setBackgroundColor(j)
+    up.write(" ")
     j = j * 2
     wrapLine(up)
 end
