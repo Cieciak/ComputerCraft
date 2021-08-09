@@ -10,7 +10,7 @@ local function wrapLine(monitor)
     end
 end
 
-local function writeAtPos(monitor, x, y, text):
+local function writeAtPos(monitor, x, y, text)
     monitor.setCursorPos(x, y)
     monitor.write(text)
 end
