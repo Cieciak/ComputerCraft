@@ -4,7 +4,23 @@ local width, height = up.getSize()
 
 local FILE_NAME = "/computercraft/test.ntxt"
 
-local COLOR_CODES = {"0" = 1,"1" = 2,"2" = 4,"3" = 8,"4" = 16,"5" = 32,"6" = 64,"7" = 128,"8" = 256,"9" = 512,"A" = 1024,"B" = 2048,"C" = 4096,"D" = 8192,"E" = 16384,"F" = 32768,}
+local COLOR_CODES = {}
+COLOR_CODES["0"] = 1
+COLOR_CODES["1"] = 2
+COLOR_CODES["2"] = 4
+COLOR_CODES["3"] = 8
+COLOR_CODES["4"] = 16
+COLOR_CODES["5"] = 32
+COLOR_CODES["6"] = 64
+COLOR_CODES["7"] = 128
+COLOR_CODES["8"] = 256
+COLOR_CODES["9"] = 512
+COLOR_CODES["A"] = 1024
+COLOR_CODES["B"] = 2048
+COLOR_CODES["C"] = 4096
+COLOR_CODES["D"] = 8192
+COLOR_CODES["E"] = 16384
+COLOR_CODES["F"] = 32768
 
 local function wrapLine(monitor)
     local width, _ = monitor.getSize()
