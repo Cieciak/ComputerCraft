@@ -17,7 +17,20 @@ local function writeAtPos(monitor, x, y, text)
     monitor.write(text)
 end
 
+local function readFile(file)
+    local i = 0
+    local lines = {}
+    local line = file.readLine()
+    while line do
+        lines[i] = line
+    end
+    return lines
+end
+
 up.clear()
 up.setCursorPos(1,1)
 
-print(fs.open(FILE_NAME, "r"))
+local file = fs.open(FILE_NAME, "r")
+
+
+print(readFile(file))
