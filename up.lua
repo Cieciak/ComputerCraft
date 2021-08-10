@@ -54,7 +54,8 @@ end
 
 local function splitOnNumber(text, index)
     for i = 1, #text do
-        print(text[i])
+        local char = text:sub(i, i)
+        print(char)
     end
 end
 
