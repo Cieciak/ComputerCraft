@@ -57,14 +57,13 @@ local function splitOnNumber(text, index)
     local ending = ''
     for i = 1, #text do
         local char = text:sub(i, i)
-        if i < index then
+        if i < index + 1 then
             start = start..char
         else
             ending = ending..char
         end
     end
-    print(start)
-    print(ending)
+    return start, ending
 end
 
 up.clear()
@@ -73,7 +72,6 @@ up.setCursorPos(1,1)
 local file = readFile(fs.open(FILE_NAME, "r"))
 
 for i = 1, #file do
-    printLine(up, file[i])
+    b, e = splitOnNumber(file[i], 3)
+    printLine(up, b.." "..e)
 end
-
-splitOnNumber("Hello World!", 2)
