@@ -53,10 +53,18 @@ local function printLine(monitor, text)
 end
 
 local function splitOnNumber(text, index)
+    local start = ''
+    local ending = ''
     for i = 1, #text do
         local char = text:sub(i, i)
-        print(char)
+        if i < index then
+            start = start..char
+        else
+            ending = ending..char
+        end
     end
+    print(start)
+    print(ending)
 end
 
 up.clear()
