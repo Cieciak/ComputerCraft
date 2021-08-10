@@ -54,7 +54,7 @@ end
 
 local function splitOnNumber(text, index)
     for i = 1, #text do
-        print(text.i)
+        print(text[i])
     end
 end
 
