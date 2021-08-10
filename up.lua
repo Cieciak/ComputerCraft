@@ -77,5 +77,5 @@ for i = 1, #file do
     if flag == "**" then
         up.setTextColor(COLOR_CODES[code])
     end
-    printLine(ending)
+    printLine(up, ending)
 end
