@@ -24,7 +24,7 @@ local function readFile(file)
         local line = file.readLine()
         lines[i] = line
         i = i + 1
-    until line
+    until not line
     return lines
 end
 
