@@ -31,7 +31,8 @@ end
 up.clear()
 up.setCursorPos(1,1)
 
-local file = fs.open(FILE_NAME, "r")
+local file = readFile(fs.open(FILE_NAME, "r"))
 
-
-print(readFile(file))
+for i = 1, #file do
+    print(file[i])
+end
