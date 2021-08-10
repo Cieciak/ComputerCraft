@@ -72,6 +72,10 @@ up.setCursorPos(1,1)
 local file = readFile(fs.open(FILE_NAME, "r"))
 
 for i = 1, #file do
-    b, e = splitOnNumber(file[i], 3)
-    printLine(up, b.." "..e)
+    local begin, ending  = splitOnNumber(file[i], 3)
+    local flag, code = splitOnNumber(begin, 2)
+    if flag == "**" then
+        up.setTextColor(COLOR_CODES[code])
+    end
+    printLine(ending)
 end
