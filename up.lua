@@ -1,8 +1,8 @@
-local up = peripheral.wrap("top")
+local up = peripheral.wrap("right")
 
 local width, height = up.getSize()
 
-local FILE_NAME = "test.ntxt"
+local FILE_NAME = "/computercraft/test.ntxt"
 
 local function wrapLine(monitor)
     local width, _ = monitor.getSize()
@@ -23,6 +23,7 @@ local function readFile(file)
     local line = file.readLine()
     while line do
         lines[i] = line
+        line = file.readLine()
     end
     return lines
 end
