@@ -65,7 +65,7 @@ up.setCursorPos(1,1)
 local file = readFile(fs.open(FILE_NAME, "r"))
 
 for i = 1, #file do
-    printLine(up, file.i)
+    printLine(up, file[i])
 end
 
 splitOnNumber("Hello World!", 2)
