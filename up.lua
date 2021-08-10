@@ -18,13 +18,13 @@ local function writeAtPos(monitor, x, y, text)
 end
 
 local function readFile(file)
-    local i = 0
+    local i = 1
     local lines = {}
-    local line = file.readLine()
-    while line do
+    repeat
+        local line = file.readLine()
         lines[i] = line
-        line = file.readLine()
-    end
+        i = i + 1
+    until line
     return lines
 end
 
