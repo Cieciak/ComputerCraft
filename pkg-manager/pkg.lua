@@ -45,7 +45,7 @@ elseif option == "selfup" then
     -- Update from the internet
     else
         shell.run("git", "Cieciak", "ComputerCraft", ".", "pkg-manager")
-        fs.move("/downloads/ComputerCraft/pkg-manager/pkg.lu", ".")
+        fs.move("/downloads/ComputerCraft/pkg-manager/pkg.lua", ".")
     end
 
 elseif option == "help" then
