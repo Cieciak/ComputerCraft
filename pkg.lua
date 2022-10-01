@@ -8,6 +8,7 @@ if option == "build" then
     if fs.isDir("/pkgs") then print("/pkgs already exist")
     else fs.makeDir("/pkgs")
     end
+
 elseif option == "install" then
     local cfg_path = fs.combine(path_to_files, 'cfg')
     if cfg_path then
@@ -24,4 +25,8 @@ elseif option == "install" then
     else error("There is no package")
     end
 
-elseif option == "clean" then fs.delete(path_to_files) end
+elseif option == "clean" then fs.delete(path_to_files)
+
+elseif option == "uninstall" then fs.delete(fs.combine("/pkgs", path_to_files))
+
+end

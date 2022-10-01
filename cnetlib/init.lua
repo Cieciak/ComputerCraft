@@ -1,2 +1,1 @@
-require "csocket"
-require "cserver"
+require "pkgs/csocket"

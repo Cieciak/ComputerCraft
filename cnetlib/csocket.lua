@@ -57,6 +57,6 @@ function CSocket:recieve()
 end
 
 function CSocket:cleanRecv()
-    _, _, port, resPort, msg = self:recieve()
+    local _, _, port, resPort, msg = self:recieve()
     return msg, port, resPort
 end
