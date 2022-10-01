@@ -23,4 +23,6 @@ elseif option == "install" then
         end
     else error("There is no package")
     end
+
+elseif option == "clean" then fs.delete(path_to_files) end
 end
