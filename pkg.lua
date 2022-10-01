@@ -25,4 +25,3 @@ elseif option == "install" then
     end
 
 elseif option == "clean" then fs.delete(path_to_files) end
-end
