@@ -1,1 +1,1 @@
-require "pkgs/csocket"
+require "pkgs/netlib/csocket"

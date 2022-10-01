@@ -29,4 +29,8 @@ elseif option == "clean" then fs.delete(path_to_files)
 
 elseif option == "uninstall" then fs.delete(fs.combine("/pkgs", path_to_files))
 
+elseif option == "selfup" then
+    if path_to_files == "local" then
+       fs.move(tArgs[3], "/pkg.lua") 
+    end
 end
