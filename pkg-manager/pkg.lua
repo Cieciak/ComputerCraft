@@ -2,6 +2,7 @@ local tArgs = {...}
 
 local option = tArgs[1]
 local path_to_files = tArgs[2]
+local VESRION = "v0.3"
 
 if option == "build" then
     -- Check for /pkgs
@@ -30,11 +31,16 @@ elseif option == "clean" then fs.delete(path_to_files)
 elseif option == "uninstall" then fs.delete(fs.combine("/pkgs", path_to_files))
 
 elseif option == "selfup" then
+    -- Save the old manager version
+    fs.delete("/pkg.lua.old")
+    fs.move("/pkg.lua /pkg.lua.old")
+
+    -- Update from local version
     if path_to_files == "local" then
-        fs.delete("/pkg.lua")
         fs.move(tArgs[3], "/pkg.lua")
+    -- Update from the internet
     else
         shell.run("git", "Cieciak", "ComputerCraft", ".", "pkg-manager")
-        fs.delete("/pkg.lua")
+        fs.move("/downloads/ComputerCraft/pkg_manager/pkg.lua .")
     end
 end
