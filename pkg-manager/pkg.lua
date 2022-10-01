@@ -11,14 +11,18 @@ if option == "build" then
     end
 
 elseif option == "install" then
+
+    -- Find the path and check the cfg file
     local cfg_path = fs.combine(path_to_files, 'cfg')
     if cfg_path then
         local cfg_file = fs.open(cfg_path, "r")
         local pkg_name = cfg_file.readLine()
         local pkg_path = fs.combine("/pkgs", pkg_name)
 
+        -- If all OK copy files
         fs.copy(path_to_files, pkg_path)
 
+        -- Show cpied files
         local copied_files = fs.list(pkg_path)
         for index = 1, #copied_files do
             print("Copied ".. copied_files[index])
@@ -43,4 +47,14 @@ elseif option == "selfup" then
         shell.run("git", "Cieciak", "ComputerCraft", ".", "pkg-manager")
         fs.move("/downloads/ComputerCraft/pkg_manager/pkg.lua .")
     end
+
+elseif option == "help" then
+    print("pkg build - Will make all the folders")
+    print("pkg install - Will instal the package")
+    print("pkg clean - WiLl delete all package files in a folder")
+    print("pkg uninstall - Will uninstall the package")
+    print("pkg selfup - Will update pkm")
+
+else 
+    print("Cieciak Package Managern\nVersion: " .. VESRION)
 end
