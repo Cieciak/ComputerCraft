@@ -18,7 +18,7 @@ elseif option == "install" then
         fs.copy(path_to_files, pkg_path)
 
         local copied_files = fs.list(pkg_path)
-        for name in copied_files do
+        for name in pairs(copied_files) do
             print("Copied ".. name)
         end
     else error("There is no package")
