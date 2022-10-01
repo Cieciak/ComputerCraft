@@ -2,7 +2,7 @@ local tArgs = {...}
 
 local option = tArgs[1]
 local path_to_files = tArgs[2]
-local VESRION = "v0.3"
+local VESRION = "v0.4"
 
 if option == "build" then
     -- Check for /pkgs
@@ -56,5 +56,5 @@ elseif option == "help" then
     print("pkg selfup - Will update pkm")
 
 else 
-    print("Cieciak Package Managern\nVersion: " .. VESRION)
+    print("Cieciak Package Manager\nVersion: " .. VESRION)
 end
