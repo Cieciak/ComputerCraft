@@ -1,4 +1,7 @@
-local option, path_to_files = {...}
+local tArgs = {...}
+
+local option = tArgs[1]
+local path_to_files = tArgs[2]
 
 if option == "build" then
     -- Check for /pkgs
