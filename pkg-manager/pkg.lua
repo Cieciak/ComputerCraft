@@ -15,31 +15,49 @@ local function download(name, owner, repo)
     return path
 end
 
+local function install(path)
+    local cfg_path = fs.combine(path, "cfg")
+    if cfg_path then
+        local cfg_file = fs.open(cfg_path, "r")
+        local pkg_name = cfg_file.readLine()
+        local pkg_path = fs.combine("/pkgs", pkg_name)
+
+        -- f all OK copy files
+        fs.copy(path, pkg_path)
+
+        -- Show copied files
+        local copied_files = fs.list(pkg_path)
+        for index = 1, #copied_files do
+            print("Copied " .. copied_files[index])
+        end
+    end
+end
+
 if option == "build" then
     -- Check for /pkgs
     if fs.isDir("/pkgs") then print("/pkgs already exist")
     else fs.makeDir("/pkgs")
     end
 
-elseif option == "install" then
+elseif option == "install" then install(tArgs[2])
 
     -- Find the path and check the cfg file
-    local cfg_path = fs.combine(path_to_files, 'cfg')
-    if cfg_path then
-        local cfg_file = fs.open(cfg_path, "r")
-        local pkg_name = cfg_file.readLine()
-        local pkg_path = fs.combine("/pkgs", pkg_name)
+    --local cfg_path = fs.combine(path_to_files, 'cfg')
+    -- if cfg_path then
+    --     local cfg_file = fs.open(cfg_path, "r")
+    --     local pkg_name = cfg_file.readLine()
+    --     local pkg_path = fs.combine("/pkgs", pkg_name)
 
-        -- If all OK copy files
-        fs.copy(path_to_files, pkg_path)
+    --     -- If all OK copy files
+    --     fs.copy(path_to_files, pkg_path)
 
-        -- Show cpied files
-        local copied_files = fs.list(pkg_path)
-        for index = 1, #copied_files do
-            print("Copied ".. copied_files[index])
-        end
-    else error("There is no package")
-    end
+    --     -- Show cpied files
+    --     local copied_files = fs.list(pkg_path)
+    --     for index = 1, #copied_files do
+    --         print("Copied ".. copied_files[index])
+    --     end
+    -- else error("There is no package")
+    -- end
 
 elseif option == "clean" then fs.delete(path_to_files)
 
