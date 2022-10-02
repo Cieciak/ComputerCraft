@@ -21,13 +21,14 @@ function CEventSocket:new(name, port, resp)
 end
 
 function CEventSocket:start()
-    local tabID = shell.openTab("/pkgs/netlib/event_socket", self.name, self.port, self.resp)
+    local tabID = shell.openTab("/pkgs/netlib/event_socket", "enableServe", self.name, self.port, self.resp)
     self.tabID = tabID
 end
 
 local function serve(name, port, resp)
     local server_socket = CSocket:new()
-    server_socket:bind(port, resp, true, true)
+    server_socket:bind(tonumber(port), tonumber(resp), true, true)
+    server_socket:open()
     while true do
         local msg, port, resp = server_socket:cleanRecv()
         os.queueEvent(name, msg, port, resp)

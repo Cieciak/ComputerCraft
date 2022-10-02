@@ -4,6 +4,14 @@ local option = tArgs[1]
 local path_to_files = tArgs[2]
 local VESRION = "v0.4"
 
+local function download(name, owner, repo)
+    local pkg_name = name
+    local repository = "ComputerCraft" or repo
+    local owner = "Cieciak" or owner
+
+    shell.run("/git", owner, repository, ".", name)
+end
+
 if option == "build" then
     -- Check for /pkgs
     if fs.isDir("/pkgs") then print("/pkgs already exist")
@@ -33,7 +41,6 @@ elseif option == "install" then
 elseif option == "clean" then fs.delete(path_to_files)
 
 elseif option == "uninstall" then fs.delete(fs.combine("/pkgs", path_to_files))
-
 elseif option == "selfup" then
     -- Save the old manager version
     fs.delete("/pkg.lua.old")
@@ -55,6 +62,7 @@ elseif option == "help" then
     print("pkg uninstall - Will uninstall the package")
     print("pkg selfup - Will update pkm")
 
+elseif option == "download" then download(tArgs[2], tArgs[3], tArgs[4])
 else 
     print("Cieciak Package Manager\nVersion: " .. VESRION)
 end
