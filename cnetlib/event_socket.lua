@@ -1,4 +1,4 @@
-require "/pkgs/netlib/socket.lua"
+require "/pkgs/netlib/socket"
 
 CEventSocket = {
     socket = nil,
