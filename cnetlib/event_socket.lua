@@ -34,6 +34,6 @@ local function serve(name, port, resp)
     end
 end
 
-if tArgs[1] ~= nil then
-    serve(tArgs[1], tArgs[2], tArgs[3])
+if tArgs[1] == "enableServe" then
+    serve(tArgs[2], tArgs[3], tArgs[4])
 end
