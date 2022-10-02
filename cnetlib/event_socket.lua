@@ -1,30 +1,39 @@
 require "/pkgs/netlib/csocket"
 
+local tArgs = {...}
+
 CEventSocket = {
-    socket = nil,
     name = "",
-    listen_co = nil
+    listen_co = nil,
+    port = 0,
+    resp = 0,
+    tabID = nil, 
 }
 
-local function listen_func(event_socket)
-    while true do
-        print("Waiting for input!")
-        local msg, port, resp = event_socket.socket:cleanRecv()
-        print("Next")
-        os.queueEvent(event_socket.name, msg, port, resp)
-    end
-end
-
-function CEventSocket:new(name)
+function CEventSocket:new(name, port, resp)
     local o = {}
     setmetatable(o, self)
     self.__index = self
     self.name = name
-    self.socket = CSocket:new()
-    self.socket:bind(100, 101, true, true)
-    self.socket:open()
-
-    self.listen_co = coroutine.wrap(listen_func)
-    self.listen_co(self)
+    self.port = port
+    self.resp = resp
     return o
+end
+
+function CEventSocket:start()
+    local tabID = shell.openTab("/pkgs/netlib/event_socket", self.name, self.port, self.resp)
+    self.tabID = tabID
+end
+
+local function serve(name, port, resp)
+    local server_socket = CSocket:new()
+    server_socket:bind(port, resp, true, true)
+    while true do
+        local msg, port, resp = server_socket:cleanRecv()
+        os.queueEvent(name, msg, port, resp)
+    end
+end
+
+if tArgs[1] ~= nil then
+    serve(tArgs[1], tArgs[2], tArgs[3])
 end
