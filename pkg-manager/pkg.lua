@@ -2,7 +2,7 @@ local tArgs = {...}
 
 local option = tArgs[1]
 local path_to_files = tArgs[2]
-local VESRION = "v0.5"
+local VESRION = "v0.6"
 
 local function download(name, owner, repo)
     local pkg_name = name
@@ -22,7 +22,7 @@ local function install(path)
         local pkg_name = cfg_file.readLine()
         local pkg_path = fs.combine("/pkgs", pkg_name)
 
-        -- f all OK copy files
+        -- If all OK copy files
         fs.copy(path, pkg_path)
 
         -- Show copied files
@@ -33,6 +33,11 @@ local function install(path)
     end
 end
 
+local function get(name, owner, repo)
+    local path = download(name, owner, repo)
+    install(path)
+end
+
 if option == "build" then
     -- Check for /pkgs
     if fs.isDir("/pkgs") then print("/pkgs already exist")
@@ -40,24 +45,6 @@ if option == "build" then
     end
 
 elseif option == "install" then install(tArgs[2])
-
-    -- Find the path and check the cfg file
-    --local cfg_path = fs.combine(path_to_files, 'cfg')
-    -- if cfg_path then
-    --     local cfg_file = fs.open(cfg_path, "r")
-    --     local pkg_name = cfg_file.readLine()
-    --     local pkg_path = fs.combine("/pkgs", pkg_name)
-
-    --     -- If all OK copy files
-    --     fs.copy(path_to_files, pkg_path)
-
-    --     -- Show cpied files
-    --     local copied_files = fs.list(pkg_path)
-    --     for index = 1, #copied_files do
-    --         print("Copied ".. copied_files[index])
-    --     end
-    -- else error("There is no package")
-    -- end
 
 elseif option == "clean" then fs.delete(path_to_files)
 
@@ -82,8 +69,11 @@ elseif option == "help" then
     print("pkg clean - WiLl delete all package files in a folder")
     print("pkg uninstall - Will uninstall the package")
     print("pkg selfup - Will update pkm")
+    print("pkg download - Will download a package")
+    print("pkg get - Will download and install package")
 
 elseif option == "download" then download(tArgs[2], tArgs[3], tArgs[4])
+elseif option == "get" then get(tArgs[2], tArgs[3], tArgs[4])
 else 
     print("Cieciak Package Manager\nVersion: " .. VESRION)
 end
