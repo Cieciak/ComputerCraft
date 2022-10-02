@@ -1,4 +1,4 @@
-require "/pkgs/netlib/socket"
+require "/pkgs/netlib/csocket"
 
 CEventSocket = {
     socket = nil,
