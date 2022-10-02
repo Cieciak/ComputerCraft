@@ -22,6 +22,7 @@ function CEventSocket:new(name)
     self.name = name
     self.socket = CSocket:new()
     self.socket:bind(100, 101, true, true)
+    self.socket:open()
 
     self.listen_co = coroutine.wrap(listen_func)
     self.listen_co(self)
