@@ -38,6 +38,19 @@ local function get(name, owner, repo)
     install(path)
 end
 
+local function bulid()
+    if fs.isDir("/pkgs") then print("pkgs already exist")
+    else fs.makeDir("/pkgs")
+    end
+end
+
+local function list()
+   local pakcages =  fs.list("/pkgs/")
+   for index = 1, #packages do
+        print(pakcages[index])
+   end 
+end
+
 if option == "build" then
     -- Check for /pkgs
     if fs.isDir("/pkgs") then print("/pkgs already exist")
@@ -74,6 +87,7 @@ elseif option == "help" then
 
 elseif option == "download" then download(tArgs[2], tArgs[3], tArgs[4])
 elseif option == "get" then get(tArgs[2], tArgs[3], tArgs[4])
+elseif option == "list" then list()
 else 
     print("Cieciak Package Manager\nVersion: " .. VESRION)
 end
