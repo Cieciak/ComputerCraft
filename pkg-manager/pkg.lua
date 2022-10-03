@@ -45,9 +45,9 @@ local function bulid()
 end
 
 local function list()
-   local pakcages =  fs.list("/pkgs/")
+   local packages =  fs.list("/pkgs")
    for index = 1, #packages do
-        print(pakcages[index])
+        print(packages[index])
    end 
 end
 
