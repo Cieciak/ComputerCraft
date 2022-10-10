@@ -45,7 +45,7 @@ local function bulid()
 end
 
 local function parse_cfg_file(path)
-    local cfg_file = fs.open(path, "w")
+    local cfg_file = fs.open(path, "r")
     local config = cfg_file.readAll()
 
     print(config)
