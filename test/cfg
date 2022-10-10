@@ -1,1 +1,7 @@
-test
+name {
+    test
+}
+
+install {
+reboot
+}
