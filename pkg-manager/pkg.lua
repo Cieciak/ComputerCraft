@@ -44,6 +44,13 @@ local function bulid()
     end
 end
 
+local function parse_cfg_file(path)
+    local cfg_file = fs.open(path)
+    local config = cfg_file.readAll()
+
+    print(config)
+end
+
 local function list()
    local packages =  fs.list("/pkgs")
    for index = 1, #packages do
@@ -88,6 +95,7 @@ elseif option == "help" then
 elseif option == "download" then download(tArgs[2], tArgs[3], tArgs[4])
 elseif option == "get" then get(tArgs[2], tArgs[3], tArgs[4])
 elseif option == "list" then list()
+elseif option == "test" then parse_cfg_file("/pkgs/test/cfg")
 else 
     print("Cieciak Package Manager\nVersion: " .. VESRION)
 end
