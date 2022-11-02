@@ -52,7 +52,7 @@ function Redstone_IO_Interface:new(io_map, side)
 end
 
 function Redstone_IO_Interface:set(name, flag)
-    local color = self.io_map[name]
+    local color = self.io_map.mapping[name]
     local hex_color = COLOR_MAP[color]
 
     if flag then
