@@ -58,7 +58,7 @@ function Redstone_IO_Interface:set(name, flag)
     if flag then
         self.state = bit.bor(self.state, hex_color)
     else
-        self.state = bit.bnor(self.state, hex_color)
+        self.state = bit.band(self.state, bit.bnot(hex_color))
     end
 end
 
